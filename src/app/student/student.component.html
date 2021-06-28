@@ -1,0 +1,81 @@
+<div class="card mt-5 ml-5 mr-5 mb-5" style="padding: 20px; top: 35px;">
+<h1 style="text-align: center; font-weight: 500; margin-top: 20px;">Registeration For An Event </h1>
+    <form [formGroup]="studentRegistration" (ngSubmit)="onSubmit()" >
+        <div class="form-group ml-5 mr-5">
+            <div class="form-group mt-2">
+                <label for="Id">Student ID :</label>
+                <input type="number" class="form-control" placeholder="Enter Student ID" required minlength="1" formControlName="studentId" 
+                [ngClass]="{'is-invalid':(studentRegistration.get('studentId').touched ||studentRegistration.get('studentId').dirty) && !studentRegistration.get('studentId').valid}"
+                >
+                <span class="invalid-feedback">
+                    <span *ngIf="studentRegistration.get('studentId').errors?.required">
+                        Please enter student Id its required !!!!
+                    </span>
+                    <span *ngIf="studentRegistration.get('studentId').errors?.minlength">
+                        ID should have at least 1 number !!!!
+                    </span>
+                    
+                </span>
+            </div>
+        
+            <div class="form-group ">
+                <label for="Id">Student Name :</label>
+                <input type="text" class="form-control" placeholder="Enter Student Name" required minlength="3" formControlName="studentName" 
+                [ngClass]="{'is-invalid':(studentRegistration.get('studentName').touched ||studentRegistration.get('studentName').dirty) && !studentRegistration.get('studentName').valid}"
+                >
+                <span class="invalid-feedback">
+                    <span *ngIf="studentRegistration.get('studentName').errors?.required">
+                        Please enter student Name its required !!!!
+                    </span>
+                    <span *ngIf="studentRegistration.get('studentName').errors?.minlength">
+                        Name should have at least 3 character long !!!!
+                    </span>
+                    
+                </span>
+            </div>
+
+            <div class="form-group">
+                <label for="gender">Gender:</label>
+                <div>
+                  <input id="studentGender"  type="radio" value="male" name="studentGender" formControlName="studentGender" (change)="changeGender($event)">
+                  <label for="male">Male</label>
+               </div>
+       
+               <div>
+                  <input id="studentGender" type="radio" value="female" name="studentGender" formControlName="studentGender" (change)="changeGender($event)">
+                  <label for="female">Female</label>
+               </div>
+            </div>
+
+            <label for="name">Select Your Hobbies :</label>
+            <div *ngFor="let subject of subjectList; let i=index">
+                <label>
+                  <input type="checkbox" [value]="subject.value" (change)="onCheckboxChange($event)" />
+                  {{subject.name}}
+                </label>
+              </div>
+            <div>
+                <label for="Id">Event Name :</label><br>
+              
+                <select formControlName="event" class="form-control"
+                [ngClass]="{'is-invalid':(studentRegistration.get('event').touched ||studentRegistration.get('event').dirty) && !studentRegistration.get('event').valid}"
+                >
+                  <option *ngFor="let dataType of selectValues;"
+                          [ngValue]="dataType">
+                    {{ dataType.eventName }}
+                  </option>
+                </select>
+                <span class="invalid-feedback">
+                    <span *ngIf="studentRegistration.get('event').errors?.required">
+                        Please select event Name its required !!!!
+                    </span>
+                </span>
+            </div>
+        </div>
+        <br>
+        <input type="submit" class="btn btn-outline-primary ml-5 mb-3" (click)="submitForm()" value="Submit" [disabled]="!studentRegistration.valid" />
+        <button type="reset" class="btn btn-outline-info ml-3 mb-3">Reset</button>
+    </form>
+
+
+</div>

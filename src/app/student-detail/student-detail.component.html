@@ -1,0 +1,59 @@
+<h1 class="mt-5" style="text-align: center; font-size: xx-large; padding-top: 55px; font-style: oblique;">Student With Event Details</h1>
+<div class="card mt-5 ml-5 mr-5 shadow p-3 bg-white rounded border border-light" style="margin-top: 45px;">
+    <table class="table table-bordered table-hover" style="text-align: center;">
+      <thead class="thead-dark ">
+        <tr>
+          <th>Student Id</th>
+          <th>Student Name</th>
+          <th>Student Gender</th>
+          <th>Student Subjects</th>
+          <th>Event Participated</th>
+          <th>Delete Student</th>
+        </tr>
+      </thead>
+      <tbody class="tbody mb-5">
+        <tr *ngFor=" let e of studentList">
+          <!--This *ngFor is an for loop in Angular -->
+          <td>{{e.studentId}}</td>
+          <td>{{e.studentName}}</td>
+          <td>{{e.studentGender}}</td>
+          <td>{{e.studentSubject}}</td>
+          <td>{{e.event.eventName}}</td>
+          <td><button class="btn btn-danger" (click)="deleteStudent(e)">Remove</button></td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+
+  <div class="container mt-5 mb-5 " *ngFor=" let f of studentList">
+    <div class="row">
+      <div class="col-sm">
+        <div class="shadow p-3 bg-white rounded border border-primary" >
+          
+          <h4 class="text-center" style="font-size:25px;font-weight:400 ;color: black; border-radius: 3px;">
+            {{f.studentName}}</h4>
+          <hr>
+          <p><b>Student Id:</b> {{f.studentId}}</p>
+         <hr>
+          <p><b>Gender:</b> {{f.studentGender}}</p>
+         <hr>
+          <p><b>Subjects:</b> {{f.studentSubject}}</p>
+         <hr>
+          <p><b>Event Name: </b>{{f.event.eventName}}</p>
+          <hr>
+          <div class="inline" style="text-align: center;">
+            <!-- <button class="btn btn-info"
+              style="width: 120px; height: 35px; text-align: center;margin-bottom: 20px; border-radius: 15px; "
+              data-toggle="modal" data-target="#exampleModalNumbers" >Update</button> -->
+            <button class="btn btn-danger ml-3" (click)="deleteStudent(f)" style="width: 180px; height: 35px; text-align: center; margin-bottom: 20px; border-radius: 18px;">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <a routerLink="StudentEvent/displayEvent">Display All Event</a>
+ 
+<router-outlet></router-outlet> -->

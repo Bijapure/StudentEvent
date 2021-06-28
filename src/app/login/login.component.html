@@ -1,0 +1,40 @@
+<div class="card mt-5 ml-5 mr-5 " style="padding: 20px; top: 35px;">
+    <h1 style="text-align: center; font-weight: 500;">Admin Login</h1>
+      <form #adminForm="ngForm" (ngSubmit)="loginUser(adminForm.value); adminForm.reset()">
+        <div class="from-group">
+    
+          <div class="from-group mt-3">
+            <label for="name">Username</label>
+            <input type="text" id="username" #username="ngModel" (ngModel)="username" name="username" required class="form-control"
+              placeholder="Enter userName"
+              >
+              <span class="text-danger"
+              *ngIf="(username.touched || adminForm.submitted) && username.errors?.required">
+              event id is required
+          </span>
+          </div>
+    
+          <div class="from-group mt-3">
+            <label for="name">Pasword :</label>
+            <input type="password" id="password" #password="ngModel" required minlength="4" (ngModel)="password" name="password" class="form-control"
+              placeholder="Enter password">
+              
+              <div class="text-danger" *ngIf="password.errors?.required && (adminForm.submitted || password.touched)">
+                <div *ngIf="password.errors.required">
+                    password is required.
+                </div>
+                <div *ngIf="password.errors.minlength">
+                    password must be at least 4 characters long.
+                </div>
+              </div>
+          </div>
+    
+        </div>
+        <div class=" text-center mt-3" style="align-items: center;">
+          <input class="btn btn-outline-success mt-3 mr-5" style="border-radius: 18px; width: 150px;" type="submit" [disabled]="adminForm.invalid" value="Login" />
+          <button class="btn btn-outline-info mr-5 mt-3" style="border-radius: 18px; width: 150px;" type="reset">Reset</button>
+        </div>
+      </form>
+    
+    </div>
+    

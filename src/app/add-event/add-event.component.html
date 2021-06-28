@@ -1,0 +1,41 @@
+
+  <div class="card mt-5 ml-5 mr-5 " style="padding: 20px; top: 35px;">
+  <h1 style="text-align: center; font-weight: 500;">Register A Event Here</h1>
+    <form #registerEventForm="ngForm" (ngSubmit)="register(registerEventForm.value); registerEventForm.reset()">
+      <div class="from-group">
+  
+        <div class="from-group mt-3">
+          <label for="name">Event id :</label>
+          <input type="number" id="eventId" #eventId="ngModel" (ngModel)="eventId" name="eventId" required class="form-control"
+            placeholder="Enter event Id"
+            >
+            <span class="text-danger"
+            *ngIf="(eventId.touched || registerEventForm.submitted) && eventId.errors?.required">
+            event id is required
+        </span>
+        </div>
+  
+        <div class="from-group mt-3">
+          <label for="name">Event Name :</label>
+          <input type="text" id="eventName" #eventName="ngModel" required minlength="4" (ngModel)="eventName" name="eventName" class="form-control"
+            placeholder="Enter event Name">
+            
+            <div class="text-danger" *ngIf="eventName.errors?.required && (registerEventForm.submitted || eventName.touched)">
+              <div *ngIf="eventName.errors.required">
+               Event Name is required.
+              </div>
+              <div *ngIf="eventName.errors.minlength">
+               Event Name must be at least 4 characters long.
+              </div>
+            </div>
+        </div>
+  
+      </div>
+      <div class=" text-center mt-3" style="align-items: center;">
+        <input class="btn btn-outline-success mt-3 mr-5" style="border-radius: 18px; width: 150px;" type="submit" [disabled]="registerEventForm.invalid" value="Submit" />
+        <button class="btn btn-outline-info mr-5 mt-3" style="border-radius: 18px; width: 150px;" type="reset">cancel</button>
+      </div>
+    </form>
+  
+  </div>
+  
